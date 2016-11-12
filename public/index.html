@@ -14,9 +14,23 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: row;
+      }
+      .container > div {
+        background: #eee;
+        padding: 10px;
+        margin: 10px;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="container">
+      <div id="simple"></div>
+      <div id="connect"></div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

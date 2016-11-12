@@ -1,20 +1,34 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
-import App from './App'
-import reducer from './reducer'
+import AppSimple from './simple/App'
+import reducerSimple from './simple/reducer'
 
-const store = createStore(reducer)
-const rootEl = document.getElementById('root')
+import AppConnect from './connect/App'
+import reducerConnect from './connect/reducer'
 
-const render = () => ReactDOM.render(
-  <App
-    store={store.getState()}
-    change={(ix, value) => store.dispatch({ type: 'CHANGE', ix, value })}
+const storeSimple = createStore(reducerSimple)
+
+const renderSimple = () => ReactDOM.render(
+  <AppSimple
+    store={storeSimple.getState()}
+    change={(ix, value) => storeSimple.dispatch({ type: 'CHANGE', ix, value })}
   />,
-  rootEl
+  document.getElementById('simple')
 )
 
-render()
-store.subscribe(render)
+renderSimple()
+storeSimple.subscribe(renderSimple)
+
+const storeConnect = createStore(reducerConnect)
+
+const renderConnect = () => ReactDOM.render(
+  <Provider store={storeConnect}>
+    <AppConnect />
+  </Provider>,
+  document.getElementById('connect')
+)
+
+renderConnect()
